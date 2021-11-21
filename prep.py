@@ -1,26 +1,17 @@
-x = 1 # int
-y = 2.0 # float
 
-def add(b,c):
-    a = b + c
-    print(a)
+def make_db(db_list, filename):
+    file = open(filename, "r") 
 
-class Test:
-    z = 5
+    i = 0
+    for eachline in file:
+        x = eachline.split()
+        y = round(float(x[5]) - float(x[2]), 5)   
+        my_tuple = (i, y)
+        db_list.append(my_tuple)
+        i += 1
+    file.close()
 
-p1 = Test
-print(p1.z)
+audusd = []
 
-my_string = "Hello Worm"
-
-print(my_string)
-
-add(x,y)
-
-#file = open("test_file.txt", "x") # x means create
-file = open("./fx_daily/AUDUSD1440.csv", "r") # r - read, w - write, a - append, r+ - r/w
-#file.write("Hello World")
-for each in file:
-    print(each)
-
-file.close()
+make_db(audusd, "./fx_daily/AUDUSD1440.csv") 
+print(audusd[435][1])
